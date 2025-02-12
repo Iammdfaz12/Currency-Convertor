@@ -12,8 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @RestController
 public class CurrencyConvertorApplication {
-	@Value("${frontend.url}")
-	@CrossOrigin(origins = "http://localhost:5173")
+	@CrossOrigin(origins = "https://currency-convertor-frontend.vercel.app")
 	public static void main(String[] args) {
 		SpringApplication.run(CurrencyConvertorApplication.class, args);
 	}
