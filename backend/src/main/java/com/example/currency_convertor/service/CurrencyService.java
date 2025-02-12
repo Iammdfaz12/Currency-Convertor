@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +16,7 @@ public class CurrencyService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${exchange.api.url}")
     private static final String API_URL = "https://api.exchangerate-api.com/v4/latest/";
 
     public Map<String, Double> getExchangeRates(String baseCurrency) {
