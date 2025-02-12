@@ -1,13 +1,25 @@
-FROM maven:3.8.5-openjdk-21 AS build
+
+FROM maven:3.9-eclipse-temurin-21 AS builder
+
+
+WORKDIR /app
 
 COPY . .
 
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21.0.1-jdk-slim
+FROM openjdk:21-slim
 
-COPY --from=build /target/backend-0.0.1-SNAPSHOT.jar demo.jar
+RUN useradd -m -s /bin/bash appuser
+
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
+RUN chown -R appuser:appuser /app
+
+USER appuser
+
 
 EXPOSE 8080
 
-ENTRYPOINT [“java”,“-jar”,“demo.jar”]
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
