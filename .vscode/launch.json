@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-CurrencyConvertorApplication<currency-convertor>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.currency_convertor.CurrencyConvertorApplication",
+      "projectName": "currency-convertor",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
