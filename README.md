@@ -1,112 +1,126 @@
-Currency Converter Application
-This is a full-stack Currency Converter application built using React.js for the frontend and Spring Boot for the backend. It integrates with a public API to provide real-time currency exchange rates and conversion functionality.
+# Currency Converter Application  
+This is a full-stack Currency Converter application built using **React.js** for the frontend and **Spring Boot** for the backend. It integrates with a public API to provide real-time currency exchange rates and conversion functionality.  
 
-Table of Contents
-Features
-Tech Stack
-Prerequisites
-Getting Started
-Frontend Setup
-Backend Setup
-Environment Variables
-Running the Application
-API Documentation
-Demo
-License
-Features
-Real-time currency exchange rates
-Currency conversion between different currencies
-Swap currencies feature
-Minimalistic and responsive user interface
-Tech Stack
-Frontend: React.js (Vite), Axios, Tailwind CSS
-Backend: Spring Boot, RestTemplate, Maven
-Deployment: Vercel (Frontend), Render (Backend)
-Prerequisites
-Make sure you have the following installed on your system:
+---
 
-Node.js (v18 or later)
-Java (JDK 21 or compatible)
-Maven
-Docker (Optional, for containerization)
-Getting Started
-Frontend Setup
-Navigate to the frontend directory:
-bash
-Copy
-Edit
+## Table of Contents  
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Prerequisites](#prerequisites)  
+- [Getting Started](#getting-started)  
+  - [Frontend Setup](#frontend-setup)  
+  - [Backend Setup](#backend-setup)  
+- [Environment Variables](#environment-variables)  
+- [Running the Application](#running-the-application)  
+- [API Documentation](#api-documentation)  
+- [Demo](#demo)  
+- [License](#license)  
+
+---
+
+## Features  
+- Real-time currency exchange rates  
+- Currency conversion between different currencies  
+- Swap currencies feature  
+- Minimalistic and responsive user interface  
+
+---
+
+## Tech Stack  
+- **Frontend:** React.js (Vite), Axios, Tailwind CSS  
+- **Backend:** Spring Boot, RestTemplate, Maven  
+- **Deployment:** Vercel (Frontend), Render (Backend)  
+
+---
+
+## Prerequisites  
+Make sure you have the following installed on your system:  
+- **Node.js** (v18 or later)  
+- **Java** (JDK 21 or compatible)  
+- **Maven**  
+- **Docker** (Optional, for containerization)  
+
+---
+
+## Getting Started  
+
+### Frontend Setup  
+1. **Navigate to the frontend directory:**  
+```bash
 cd currency-convertor-frontend
-Install dependencies:
-bash
-Copy
-Edit
-npm install
-Create a .env file in the frontend root directory:
-env
-Copy
-Edit
-VITE_APP_API_URL=http://localhost:8080/currency_convertor
-Start the React development server:
-bash
-Copy
-Edit
+```
+2. **Install dependencies:**
+```bash
+   npm install
+```
+3. **Create a .env file in the frontend root directory:**
+```env
+VITE_APP_API_URL=http://localhost:8080/
+```
+4. **Start the React development server:**
+```bash
 npm run dev
-The frontend should now be running at http://localhost:5173.
+```
+The frontend should now be running at [http://localhost:5173](http://localhost:5173)
 
-Backend Setup
-Navigate to the backend directory:
-bash
-Copy
-Edit
+### Backend Setup
+1. Navigate to the backend directory:
+```bash
 cd currency-convertor-backend
-Create a .env file in the backend root directory:
-env
-Copy
-Edit
+```
+2. Create a .env file in the backend root directory:
+```env
 API_BASE_URL=https://api.exchangerate-api.com/v4/latest
 FRONTEND_URL=http://localhost:5173
-Build and run the Spring Boot application:
-bash
-Copy
-Edit
+```
+3. Build and run the Spring Boot application:
+```bash
 ./mvnw spring-boot:run
+```
 The backend should now be running at http://localhost:8080.
 
-Environment Variables
-Variable	Description	Example
-VITE_APP_API_URL	API URL for frontend Axios requests	http://localhost:8080/currency_convertor
-API_BASE_URL	Public exchange rates API URL	https://api.exchangerate-api.com/v4/latest
-FRONTEND_URL	URL for CORS configuration	http://localhost:5173
-Running the Application
-Frontend: Navigate to currency-convertor-frontend and run:
-bash
-Copy
-Edit
-npm run dev
-Backend: Navigate to currency-convertor-backend and run:
-bash
-Copy
-Edit
-./mvnw spring-boot:run
-Open http://localhost:5173 in your browser to use the application.
 
-API Documentation
+---
+
+
+## Environment Variables  
+-------------------------
+
+| Variable           | Description                          | Example                                     |
+| ------------------ | ------------------------------------ | ------------------------------------------- |
+| VITE_APP_API_URL   | API URL for frontend Axios requests   | `http://localhost:8080/currency_convertor`   |
+| API_BASE_URL       | Public exchange rates API URL         | `https://api.exchangerate-api.com/v4/latest` |
+| FRONTEND_URL       | URL for CORS configuration            | `http://localhost:5173`                      |
+
+
+## Running the Application
+
+- Frontend: Navigate to currency-convertor-frontend and run:
+```bash
+npm run dev
+```
+- Backend: Navigate to currency-convertor-backend and run:
+```bash
+./mvnw spring-boot:run
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser to use the application.
+
+---
+
+## API Documentation
+
 1. GET /api/rates
 Fetch exchange rates for a given base currency. Default base is USD if not provided.
-Endpoint:
-
-bash
-Copy
-Edit
+```
 GET /currency_convertor/rates?base=USD
+```
 Query Parameters:
 
-base (optional) - Base currency (e.g., USD, EUR, INR)
-Response:
+- base (optional) - Base currency (e.g., USD, EUR, INR)
 
-json
-Copy
-Edit
+Responses: 
+
+```json
 {
   "base": "USD",
   "rates": {
@@ -115,42 +129,58 @@ Edit
     "GBP": 0.82
   }
 }
+```
 2. POST /api/convert
 Convert an amount from one currency to another using the latest exchange rates.
 Endpoint:
 
-bash
-Copy
-Edit
+```bash
 POST /currency_convertor/convert
+```
 Request Body:
-
-json
-Copy
-Edit
+```json
 {
   "from": "USD",
   "to": "EUR",
   "amount": 100
 }
-Response:
+```
+Response: 
 
-json
-Copy
-Edit
+```json
 {
   "from": "USD",
   "to": "EUR",
   "amount": 100,
   "convertedAmount": 94.5
 }
-Error Handling
-400 Bad Request: Invalid currency codes or missing fields in the request body.
-500 Internal Server Error: External API is unavailable or other server-side issues.
-Demo
-Check out the live version of the application:
+```
+---
 
-Frontend: currency-convertor-frontend.vercel.app
-Backend: currency-convertor-backend-czmu.onrender.com
-License
-This project is licensed under the MIT License.
+## Error Handling
+
+- 400 Bad Request: Invalid currency codes or missing fields in the request body.
+- 500 Internal Server Error: External API is unavailable or other server-side issues.
+  
+---
+
+## Demo
+Check out the live version of the application:
+- Frontend: [https://currency-convertor-frontend.vercel.app](https://currency-convertor-frontend.vercel.app/)
+- Backend(Use Postman to test): [https://currency-convertor-backend-czmu.onrender.com/currency_convertor/convert](https://currency-convertor-backend-czmu.onrender.com/currency_convertor/convert)
+  - Method: POST
+  - Request Body:
+```json
+{
+  "from": "USD",
+  "to": "EUR",
+  "amount": 100
+}
+```
+
+---
+
+## License 
+This project is licensed under the MIT License. 
+
+
